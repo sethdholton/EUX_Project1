@@ -1,8 +1,11 @@
 ﻿
 
+var kit;
+
 var playButton;
 
 var drumNames = ["hho", "hh", "snare", "kick"];
+
 kit = new Tone.Players(
   {"hho" : "/assets/samples/hho.mp3",
    "hh" : "/assets/samples/hh.mp3",
@@ -24,7 +27,7 @@ function setup() {
 }
 
 function draw() {
-  kit.player("hho").start();
+  // kit.player("hho").start();
 }
 
 function togglePlay() {
