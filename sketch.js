@@ -11,7 +11,6 @@ kit = new Tone.Players(
    "hh" : "/assets/samples/hh.mp3",
    "snare" : "/assets/samples/snare.mp3",
    "kick" : "/assets/samples/kick.mp3"
-
   });
 
 kit.toMaster();
@@ -27,6 +26,7 @@ function setup() {
 }
 
 function draw() {
+  background(200);
   // kit.player("hho").start();
 }
 
