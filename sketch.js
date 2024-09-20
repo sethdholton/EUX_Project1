@@ -3,13 +3,13 @@
 var playButton;
 
 // beats per minute
-var bpm = 120;
+var bpm = 180;
 
 // current millisecond and previous millisecond
 var cms,pms;
 
 var currentStep = 0;
-var nSteps = 16;
+var nSteps = 64;
 var nTracks = 4;
 
 var started = false;
@@ -20,14 +20,20 @@ let cellWidth, cellHeight;
 
 var cells = [];
 
+var sounds = [];
+
 
 
 function preload() {
   soundFormats('mp3');
-  hho = loadSound('assets/samples/hho.mp3');
-  hh = loadSound('assets/samples/hh.mp3');
-  snare = loadSound('assets/samples/snare.mp3');
-  kick = loadSound('assets/samples/kick.mp3');
+  sounds[0] = loadSound('assets/samples/hho.mp3');
+  sounds[1] = loadSound('assets/samples/hh.mp3');
+  sounds[2] = loadSound('assets/samples/snare.mp3');
+  sounds[3] = loadSound('assets/samples/kick.mp3');
+  // hho = loadSound('assets/samples/hho.mp3');
+  // hh = loadSound('assets/samples/hh.mp3');
+  // snare = loadSound('assets/samples/snare.mp3');
+  // kick = loadSound('assets/samples/kick.mp3');
 }
 
 
@@ -64,6 +70,15 @@ function draw() {
   print('draw');
   // kit.player("hho").start();
 
+  for(var track=0; track<nTracks; track++){
+  	for(var step=0; step<nSteps; step++){
+  		if(cells[track][step] == 1){
+        fill(150 - track*30);
+        rect(step*cellWidth,track*cellHeight,cellWidth, cellHeight);
+      }
+  	}
+  }
+
   if (started) {
     runLoop();
   };
@@ -76,14 +91,21 @@ function draw() {
 
 
 function runLoop() {
-  if (cms - pms >= (60000 / bpm)) {
+  if (cms - pms >= (30000 / bpm)) {
     if (currentStep > nSteps-1) {
       currentStep = 1;
     } else {
       currentStep++;
     }
     pms = cms;
+
+    for(var track=0;track<nTracks;track++) {
+      if(cells[track][currentStep-1] == 1) {
+        sounds[track].play();
+      }
+    }
   }
+  
   noStroke();
   fill(100, 100, 100, 40);
   rect((currentStep-1)*cellWidth, 0, cellWidth, height);
@@ -95,6 +117,10 @@ function drawGrid() {
   strokeWeight(1);
   for(var i=0; i<nSteps; i++) {
     line(i*cellWidth,0,i*cellWidth,height);
+  }
+  // horizontal lines
+  for(var j=0; j<nTracks; j++){
+  	line(0,j*cellHeight,width,j*cellHeight);
   }
 }
 
