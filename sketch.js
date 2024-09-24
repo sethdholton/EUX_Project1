@@ -10,7 +10,7 @@ var cms,pms;
 
 var currentStep = 0;
 var nSteps = 16;
-var nTracks = 4;
+var nTracks = 12;
 
 var started = false;
 
@@ -32,10 +32,19 @@ function preload() {
   sounds[1] = loadSound('assets/samples/closedhihat.wav');
   sounds[2] = loadSound('assets/samples/snare.wav');
   sounds[3] = loadSound('assets/samples/kick.wav');
+  sounds[4] = loadSound('assets/samples/chord1.wav');
+  sounds[5] = loadSound('assets/samples/chord2.wav');
+  sounds[6] = loadSound('assets/samples/chord3.wav');
+  sounds[7] = loadSound('assets/samples/chord4.wav');
+  sounds[8] = loadSound('assets/samples/lead1.wav');
+  sounds[9] = loadSound('assets/samples/lead2.wav');
+  sounds[10] = loadSound('assets/samples/lead3.wav');
+  sounds[11] = loadSound('assets/samples/lead4.wav');
+  
   synth = loadImage('assets/images/synth.png');
   buttonOn = loadImage('assets/images/button_on.png');
   buttonOff = loadImage('assets/images/button_off.png');
-  // hho = loadSound('assets/samples/hho.mp3');
+  // hho = loadSound('asets/samples/hho.mp3');
   // hh = loadSound('assets/samples/hh.mp3');
   // snare = loadSound('assets/samples/snare.mp3');
   // kick = loadSound('assets/samples/kick.mp3');
@@ -113,8 +122,9 @@ function draw() {
       var i = floor(mouseX/cellWidth);
       var j = floor(mouseY/cellHeight);
 
-      fill(80);
-      noStroke();
+      noFill();
+      stroke(255);
+      strokeWeight(5);
       rect(cellWidth*i, cellHeight*j, cellWidth, cellHeight);
 }
 
