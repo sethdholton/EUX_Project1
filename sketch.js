@@ -22,6 +22,8 @@ var cells = [];
 
 var sounds = [];
 
+let synth, buttonOn, buttonOff;
+
 
 
 function preload() {
@@ -30,6 +32,9 @@ function preload() {
   sounds[1] = loadSound('assets/samples/closedhihat.wav');
   sounds[2] = loadSound('assets/samples/snare.wav');
   sounds[3] = loadSound('assets/samples/kick.wav');
+  synth = loadImage('assets/images/synth.png');
+  buttonOn = loadImage('assets/images/button_on.png');
+  buttonOff = loadImage('assets/images/button_off.png');
   // hho = loadSound('assets/samples/hho.mp3');
   // hh = loadSound('assets/samples/hh.mp3');
   // snare = loadSound('assets/samples/snare.mp3');
