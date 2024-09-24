@@ -3,13 +3,13 @@
 var playButton;
 
 // beats per minute
-var bpm = 180;
+var bpm = 110;
 
 // current millisecond and previous millisecond
 var cms,pms;
 
 var currentStep = 0;
-var nSteps = 64;
+var nSteps = 16;
 var nTracks = 4;
 
 var started = false;
@@ -25,21 +25,38 @@ var sounds = [];
 
 
 function preload() {
-  soundFormats('mp3');
-  sounds[0] = loadSound('assets/samples/hho.mp3');
-  sounds[1] = loadSound('assets/samples/hh.mp3');
-  sounds[2] = loadSound('assets/samples/snare.mp3');
-  sounds[3] = loadSound('assets/samples/kick.mp3');
+  soundFormats('wav');
+  sounds[0] = loadSound('assets/samples/openhihat.wav');
+  sounds[1] = loadSound('assets/samples/closedhihat.wav');
+  sounds[2] = loadSound('assets/samples/snare.wav');
+  sounds[3] = loadSound('assets/samples/kick.wav');
   // hho = loadSound('assets/samples/hho.mp3');
   // hh = loadSound('assets/samples/hh.mp3');
   // snare = loadSound('assets/samples/snare.mp3');
   // kick = loadSound('assets/samples/kick.mp3');
 }
 
+class Kick {
+  constructor(pitch) {
+    this.pitch = pitch;
+  }
+
+  play() {
+    let s = new Audio('/assets/kick.wav');
+    s.mozPreservesPitch = false;
+    s.preservesPitch = false;
+    s.volume = 0.2; //reduced volume to avoid clipping
+    s.playbackRate = this.pitch;
+    s.play();
+  }
+}
+
 
 
 function setup() {
   createCanvas(600, 300);
+
+  
 
   playButton = createButton('Play');
   playButton.position(550, 300);
@@ -59,6 +76,8 @@ function setup() {
       cells[track][step] = -1;
     }
   }
+
+  // let sound1 = new Hihat(1);
 }
 
 
