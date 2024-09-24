@@ -130,7 +130,7 @@ function draw() {
 
   drawGrid();
   
-  text(currentStep, 5, 60, 90);
+  // text(currentStep, 5, 60, 90);
 }
 
 
