@@ -41,27 +41,25 @@ function preload() {
   // kick = loadSound('assets/samples/kick.mp3');
 }
 
-class Kick {
-  constructor(pitch) {
-    this.pitch = pitch;
-  }
+// class Kick {
+//   constructor(pitch) {
+//     this.pitch = pitch;
+//   }
 
-  play() {
-    let s = new Audio('/assets/kick.wav');
-    s.mozPreservesPitch = false;
-    s.preservesPitch = false;
-    s.volume = 0.2; //reduced volume to avoid clipping
-    s.playbackRate = this.pitch;
-    s.play();
-  }
-}
+//   play() {
+//     let s = new Audio('/assets/kick.wav');
+//     s.mozPreservesPitch = false;
+//     s.preservesPitch = false;
+//     s.volume = 0.2; //reduced volume to avoid clipping
+//     s.playbackRate = this.pitch;
+//     s.play();
+//   }
+// }
 
 
 
 function setup() {
   createCanvas(600, 300);
-
-  
 
   playButton = createButton('Play');
   playButton.position(550, 300);
@@ -94,6 +92,8 @@ function draw() {
   print('draw');
   // kit.player("hho").start();
 
+  // image(synth, 0, 0, synth.width, synth.height);
+
   for(var track=0; track<nTracks; track++){
   	for(var step=0; step<nSteps; step++){
   		if(cells[track][step] == 1){
@@ -106,6 +106,17 @@ function draw() {
   if (started) {
     runLoop();
   };
+
+  if (0<mouseX && mouseX<width &&
+    0<mouseY && mouseY<height) {
+  
+      var i = floor(mouseX/cellWidth);
+      var j = floor(mouseY/cellHeight);
+
+      fill(80);
+      noStroke();
+      rect(cellWidth*i, cellHeight*j, cellWidth, cellHeight);
+}
 
   drawGrid();
   
