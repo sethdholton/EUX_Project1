@@ -22,6 +22,8 @@ var cells = [];
 
 var sounds = [];
 
+let synth, buttonOn, buttonOff;
+
 
 
 function preload() {
@@ -30,6 +32,9 @@ function preload() {
   sounds[1] = loadSound('assets/samples/closedhihat.wav');
   sounds[2] = loadSound('assets/samples/snare.wav');
   sounds[3] = loadSound('assets/samples/kick.wav');
+  synth = loadImage('assets/images/synth.png');
+  buttonOn = loadImage('assets/images/button_on.png');
+  buttonOff = loadImage('assets/images/button_off.png');
   // hho = loadSound('assets/samples/hho.mp3');
   // hh = loadSound('assets/samples/hh.mp3');
   // snare = loadSound('assets/samples/snare.mp3');
@@ -55,8 +60,6 @@ function preload() {
 
 function setup() {
   createCanvas(600, 300);
-
-  
 
   playButton = createButton('Play');
   playButton.position(550, 300);
@@ -89,6 +92,8 @@ function draw() {
   print('draw');
   // kit.player("hho").start();
 
+  // image(synth, 0, 0, synth.width, synth.height);
+
   for(var track=0; track<nTracks; track++){
   	for(var step=0; step<nSteps; step++){
   		if(cells[track][step] == 1){
@@ -101,6 +106,17 @@ function draw() {
   if (started) {
     runLoop();
   };
+
+  if (0<mouseX && mouseX<width &&
+    0<mouseY && mouseY<height) {
+  
+      var i = floor(mouseX/cellWidth);
+      var j = floor(mouseY/cellHeight);
+
+      fill(80);
+      noStroke();
+      rect(cellWidth*i, cellHeight*j, cellWidth, cellHeight);
+}
 
   drawGrid();
   
