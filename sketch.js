@@ -36,20 +36,20 @@ function preload() {
   // kick = loadSound('assets/samples/kick.mp3');
 }
 
-class Kick {
-  constructor(pitch) {
-    this.pitch = pitch;
-  }
+// class Kick {
+//   constructor(pitch) {
+//     this.pitch = pitch;
+//   }
 
-  play() {
-    let s = new Audio('/assets/kick.wav');
-    s.mozPreservesPitch = false;
-    s.preservesPitch = false;
-    s.volume = 0.2; //reduced volume to avoid clipping
-    s.playbackRate = this.pitch;
-    s.play();
-  }
-}
+//   play() {
+//     let s = new Audio('/assets/kick.wav');
+//     s.mozPreservesPitch = false;
+//     s.preservesPitch = false;
+//     s.volume = 0.2; //reduced volume to avoid clipping
+//     s.playbackRate = this.pitch;
+//     s.play();
+//   }
+// }
 
 
 
